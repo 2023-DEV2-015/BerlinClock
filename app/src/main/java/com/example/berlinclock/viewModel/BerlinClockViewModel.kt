@@ -19,6 +19,7 @@ class BerlinClockViewModel : ViewModel(){
 
     init{
         startTime()
+        timer.start()
     }
 
     private var _berlinTime : MutableLiveData<BerlinTime> = MutableLiveData(BerlinTime.init())
@@ -51,7 +52,6 @@ class BerlinClockViewModel : ViewModel(){
                 start()
             }
         }
-        timer.start()
     }
     private fun updateClockTime() {
         val time: String = SimpleDateFormat(TIME_FORMAT, Locale.getDefault()).format(Date())

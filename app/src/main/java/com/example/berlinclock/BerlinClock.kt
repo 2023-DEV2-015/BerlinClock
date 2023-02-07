@@ -50,7 +50,7 @@ class BerlinClock {
         private fun getHoursTopRow(hours : Int): List<LightColors> {
             val result = Hours.base()
             for (index : Int in 0 until hours/5){
-                result[index] = LightColors.RED
+                result[index] = RED
             }
             return result
         }
@@ -58,7 +58,7 @@ class BerlinClock {
         private fun getHoursBottomRow(hours :Int): List<LightColors> {
             val result = Hours.base()
             for (index : Int in 0 until hours%5){
-                result[index] = LightColors.RED
+                result[index] = RED
             }
             return result
         }
