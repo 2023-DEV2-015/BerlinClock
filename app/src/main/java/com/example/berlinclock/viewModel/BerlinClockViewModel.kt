@@ -4,6 +4,8 @@ import android.os.CountDownTimer
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.example.berlinclock.converter.BerlinClockConverter
 import com.example.berlinclock.models.BerlinTime
 import java.text.SimpleDateFormat
 import java.util.*
@@ -12,7 +14,7 @@ import java.util.*
 const val TIME_FORMAT = "HH:mm:ss"
 const val DURATION = 600000L
 const val INTERVAL = 1000L
-class BerlinClockViewModel {
+class BerlinClockViewModel : ViewModel(){
 
 
     init{
@@ -36,6 +38,12 @@ class BerlinClockViewModel {
         _berlinTime.postValue(BerlinTime.init())
     }
 
+    private fun updateBerlinTime(time: String) {
+        _time.postValue(time)
+        val result = BerlinClockConverter.convert(time)
+        _berlinTime.postValue(result)
+    }
+
     private fun startTime() {
         timer = object : CountDownTimer(DURATION, INTERVAL) {
             override fun onTick(millisUntilFinished: Long) = updateClockTime()
@@ -47,5 +55,6 @@ class BerlinClockViewModel {
     }
     private fun updateClockTime() {
         val time: String = SimpleDateFormat(TIME_FORMAT, Locale.getDefault()).format(Date())
+        updateBerlinTime(time)
     }
 }
