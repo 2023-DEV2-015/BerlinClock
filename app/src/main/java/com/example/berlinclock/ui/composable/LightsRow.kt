@@ -3,6 +3,7 @@ package com.example.berlinclock.ui.composable
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -23,12 +24,12 @@ fun LightsRow(colorList: List<LightColors>) {
         while(it.hasNext()){
             when(it.nextIndex()){
                 0 -> {
-                    Block(color = it.next().color, count = colorList.size)
+                    Block(color = it.next().color, count = colorList.size, START_SHAPE)
                 }
                 colorList.lastIndex -> {
-                    Block(color = it.next().color, count = colorList.size)
+                    Block(color = it.next().color, count = colorList.size, END_SHAPE)
                 }
-                else -> { Block(color = it.next().color, colorList.size) }
+                else -> { Block(color = it.next().color, colorList.size, RectangleShape) }
 
             }
         }
