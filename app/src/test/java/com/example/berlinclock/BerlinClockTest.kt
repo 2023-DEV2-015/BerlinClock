@@ -14,7 +14,15 @@ class BerlinClockTest {
         val result = BerlinClock.getSeconds(22)
         val expected = YELLOW
 
-        assertThat("EVEN SECONDS VALUE TURNS SECONDS LIGHT YELLOW" ,result.equals(expected))
+        assertThat("EVEN SECONDS VALUE TURNS SECONDS LIGHT YELLOW" ,result == expected)
+    }
+
+    @Test
+    fun if_odd_second_display_off_color(){
+        val result = BerlinClock.getSeconds(45)
+        val expected = OFF
+
+        assertThat("ODD SECONDS VALUE TURNS SECONDS LIGHT OFF" ,result == expected)
     }
 
 
