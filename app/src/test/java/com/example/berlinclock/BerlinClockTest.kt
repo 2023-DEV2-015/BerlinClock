@@ -3,6 +3,7 @@ package com.example.berlinclock
 
 
 
+import com.example.berlinclock.models.Hours
 import com.example.berlinclock.models.Minutes
 import com.example.berlinclock.viewModel.BerlinClockViewModel.LightColors.*
 import org.hamcrest.MatcherAssert.assertThat
@@ -46,7 +47,7 @@ class BerlinClockTest {
         val bottomRow = listOf(OFF, OFF, OFF, OFF)
         val expectedResult = Minutes(topRow = topRow, bottomRow = bottomRow)
 
-        assertThat("IF 15 MINUTES MULTIPLES DISPLAY YELLOW AND RED COLORS", expectedResult.equals(result))
+        assertThat("IF 15 MINUTES MULTIPLES DISPLAY YELLOW AND RED COLORS", expectedResult == result)
     }
 
     @Test
@@ -57,7 +58,17 @@ class BerlinClockTest {
         val bottomRow = listOf(YELLOW, YELLOW, YELLOW, OFF)
         val expectedResult = Minutes(topRow = topRow, bottomRow = bottomRow)
 
-        assertThat("CHECK IF RANDOM MINUTE CORRESPOND TO EXPECTED RESULT", expectedResult.equals(result))
+        assertThat("CHECK IF RANDOM MINUTE CORRESPOND TO EXPECTED RESULT", expectedResult == result)
     }
 
+    @Test
+    fun if_random_hour_check_color(){
+        val result = BerlinClock.getHours(12)
+
+        val topRow = listOf( RED, RED, OFF, OFF)
+        val bottomRow = listOf(RED, RED, OFF, OFF)
+        val expectedResult = Hours(topRow = topRow, bottomRow = bottomRow)
+
+        assertThat("CHECK IF RANDOM HOUR CORRESPOND TO EXPECTED RESULT", expectedResult == result)
+    }
 }

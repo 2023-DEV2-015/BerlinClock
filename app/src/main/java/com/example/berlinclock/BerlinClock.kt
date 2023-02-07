@@ -1,5 +1,6 @@
 package com.example.berlinclock
 
+import com.example.berlinclock.models.Hours
 import com.example.berlinclock.models.Minutes
 import com.example.berlinclock.viewModel.BerlinClockViewModel.LightColors
 import com.example.berlinclock.viewModel.BerlinClockViewModel.LightColors.*
@@ -22,8 +23,8 @@ class BerlinClock {
             return Minutes(getMinutesTopRow(minutes),getMinutesBottomRow(minutes))
         }
 
-        fun getHours(hours : Int){
-
+        fun getHours(hours : Int):Hours{
+            return Hours(getHoursTopRow(hours), getHoursBottomRow(hours))
         }
 
         private fun getMinutesTopRow(minutes : Int):List<LightColors>{
@@ -46,12 +47,12 @@ class BerlinClock {
             return result
         }
 
-        private fun getHoursTopRow(minutes : Int){
-
+        private fun getHoursTopRow(minutes : Int): List<LightColors> {
+            return Hours.base()
         }
 
-        private fun getHoursBottomRow(minutes :Int){
-
+        private fun getHoursBottomRow(minutes :Int): List<LightColors> {
+            return Hours.base()
         }
 
     }
