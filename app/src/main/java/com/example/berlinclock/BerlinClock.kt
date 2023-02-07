@@ -27,12 +27,23 @@ class BerlinClock {
         }
 
         private fun getMinutesTopRow(minutes : Int):List<LightColors>{
-            return Minutes.baseTop()
+            val result = Minutes.baseTop()
+            for (index : Int in 0 until minutes/5){
+                if((index+1)%3==0)
+                    result[index] = RED
+                else
+                    result[index] = YELLOW
+            }
+            return result
 
         }
 
         private fun getMinutesBottomRow(minutes :Int):List<LightColors>{
-            return Minutes.baseBottom()
+            val result = Minutes.baseBottom()
+            for (index : Int in 0 until minutes%5){
+                result[index] = YELLOW
+            }
+            return result
         }
 
         private fun getHoursTopRow(minutes : Int){

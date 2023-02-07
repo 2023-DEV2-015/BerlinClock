@@ -34,7 +34,7 @@ class BerlinClockTest {
         val bottomRow = listOf(YELLOW, YELLOW, YELLOW, OFF)
         val expectedResult = Minutes(topRow = topRow, bottomRow = bottomRow)
 
-        assertThat("IF BELOW 4 MINUTES TOP ROW IS OFF", expectedResult.equals(result))
+        assertThat("IF BELOW 4 MINUTES TOP ROW IS OFF", expectedResult==result)
     }
 
 }
