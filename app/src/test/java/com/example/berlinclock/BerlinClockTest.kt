@@ -3,6 +3,8 @@ package com.example.berlinclock
 
 
 
+import com.example.berlinclock.converter.BerlinClockConverter
+import com.example.berlinclock.models.BerlinTime
 import com.example.berlinclock.models.Hours
 import com.example.berlinclock.models.Minutes
 import com.example.berlinclock.viewModel.BerlinClockViewModel.LightColors.*
@@ -70,5 +72,20 @@ class BerlinClockTest {
         val expectedResult = Hours(topRow = topRow, bottomRow = bottomRow)
 
         assertThat("CHECK IF RANDOM HOUR CORRESPOND TO EXPECTED RESULT", expectedResult == result)
+    }
+
+    @Test
+    fun test_berlin_time_for_01_10_24() {
+        val result = BerlinClockConverter.convert("01:10:24")
+        val hoursOnTop = listOf(OFF, OFF, OFF, OFF)
+        val hoursOnBottom = listOf(RED, OFF, OFF, OFF)
+        val minutesOnTop = listOf(YELLOW, YELLOW, OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF)
+        val minutesOnBottom = listOf(OFF, OFF, OFF, OFF)
+        val expectedResult = BerlinTime(
+            secondsLight = YELLOW,
+            minutesLights = Minutes(minutesOnTop, minutesOnBottom),
+            hoursLights = Hours(hoursOnTop, hoursOnBottom)
+        )
+        assertThat("CHECK IF PRECISE HOUR CORRESPOND TO EXPECTED UI DATA", result == expectedResult)
     }
 }
