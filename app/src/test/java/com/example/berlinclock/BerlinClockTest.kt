@@ -37,4 +37,27 @@ class BerlinClockTest {
         assertThat("IF BELOW 4 MINUTES TOP ROW IS OFF", expectedResult==result)
     }
 
+    @Test
+    fun if_15_minutes_multiple_display_yellow_and_red_color(){
+        val result = BerlinClock.getMinutes(30)
+
+        val topRow = listOf(YELLOW, YELLOW,
+            RED, YELLOW, YELLOW, RED, OFF, OFF, OFF, OFF, OFF)
+        val bottomRow = listOf(OFF, OFF, OFF, OFF)
+        val expectedResult = Minutes(topRow = topRow, bottomRow = bottomRow)
+
+        assertThat("IF 15 MINUTES MULTIPLES DISPLAY YELLOW AND RED COLORS", expectedResult.equals(result))
+    }
+
+    @Test
+    fun if_random_minute_check_color(){
+        val result = BerlinClock.getMinutes(33)
+
+        val topRow = listOf(YELLOW, YELLOW, RED, YELLOW, YELLOW, RED, OFF, OFF, OFF, OFF, OFF)
+        val bottomRow = listOf(YELLOW, YELLOW, YELLOW, OFF)
+        val expectedResult = Minutes(topRow = topRow, bottomRow = bottomRow)
+
+        assertThat("CHECK IF RANDOM MINUTE CORRESPOND TO EXPECTED RESULT", expectedResult.equals(result))
+    }
+
 }
